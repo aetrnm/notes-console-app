@@ -1,9 +1,13 @@
 import chalk from 'chalk';
 import fs from 'fs';
 import columnify from 'columnify';
+import niceTry  from 'nice-try'
 
 function getNotesSync() {
-  return JSON.parse(fs.readFileSync('./notes.json'));
+  if (niceTry(JSON.parse(fs.readFileSync('./notes.json')))){
+    return JSON.parse(fs.readFileSync('./notes.json'))
+  }
+  return [];
 }
 
 export function addNote(note) {
