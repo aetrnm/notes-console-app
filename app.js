@@ -31,12 +31,4 @@ program
     logNotes();
   });
 
-program
-  .command('read')
-  .description('Show a note')
-  .argument('<number>', 'ID')
-  .action((id) => {
-    console.log(id);
-  });
-
 program.parse();
