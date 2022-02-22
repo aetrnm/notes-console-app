@@ -2,12 +2,12 @@ import chalk from 'chalk';
 import fs from 'fs';
 import columnify from 'columnify';
 
-function getNotes() {
+function getNotesSync() {
   return JSON.parse(fs.readFileSync('./notes.json'));
 }
 
 export function addNote(note) {
-  const notes = getNotes();
+  const notes = getNotesSync();
   const newNote = {
     id: notes.length + 1,
     note: note,
@@ -19,7 +19,7 @@ export function addNote(note) {
 }
 
 export function deleteNote(idToRemove) {
-  const notes = getNotes();
+  const notes = getNotesSync();
   if (idToRemove > notes.length) {
     console.log(chalk.redBright.inverse('Wrong ID!'));
     return;
@@ -34,7 +34,7 @@ export function deleteNote(idToRemove) {
 }
 
 export function logNotes() {
-  const notes = getNotes();
+  const notes = getNotesSync();
   if (notes.length === 0) {
     console.log(chalk.yellow.inverse('No notes yet!'));
     return;
